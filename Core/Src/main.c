@@ -21,7 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "nixie_diplay.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -91,21 +91,8 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  // Start with outputs disabled
-  HAL_GPIO_WritePin(nOE_GPIO_Port, nOE_Pin, GPIO_PIN_SET);
-
-  // Clear shift register and storage register
-  HAL_GPIO_WritePin(nSRCLR_GPIO_Port, nSRCLR_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(nSRCLR_GPIO_Port, nSRCLR_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(RCLK_GPIO_Port, RCLK_Pin, GPIO_PIN_SET);
-  HAL_GPIO_WritePin(RCLK_GPIO_Port, RCLK_Pin, GPIO_PIN_RESET);
-
-  // Enable output
-  HAL_GPIO_WritePin(nOE_GPIO_Port, nOE_Pin, GPIO_PIN_RESET);
-
-  // Start both clocks low
-  HAL_GPIO_WritePin(SRCLK_GPIO_Port, SRCLK_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(RCLK_GPIO_Port, RCLK_Pin, GPIO_PIN_RESET);
+  InitializeDisplay();
+  TurnOnDisplay();
 
   count = 0;
 
