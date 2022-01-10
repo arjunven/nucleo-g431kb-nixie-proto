@@ -65,8 +65,8 @@ static void MX_USART2_UART_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int count;
-	int check;
+	int nums[] = {6, 0, 4, 9, 1, 3};
+	int num;
 
   /* USER CODE END 1 */
 
@@ -94,40 +94,24 @@ int main(void)
   InitializeDisplay();
   TurnOnDisplay();
 
-  count = 0;
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-	check = count % 10;
-	if(check == 0){
-		HAL_GPIO_WritePin(SER_GPIO_Port, SER_Pin, GPIO_PIN_SET);
-	    HAL_GPIO_WritePin(SRCLK_GPIO_Port, SRCLK_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(SRCLK_GPIO_Port, SRCLK_Pin, GPIO_PIN_RESET);
+  while (1) {
+    int i;
+    for(i = 0; i < 6; i++) {
+     num = nums[i];
+     DisplayNumber(num);
+     HAL_Delay(1000);
+    }
 
-		HAL_GPIO_WritePin(SER_GPIO_Port, SER_Pin, GPIO_PIN_RESET);
-	} else {
-		// Write to shift register
-		HAL_GPIO_WritePin(SRCLK_GPIO_Port, SRCLK_Pin, GPIO_PIN_SET);
-		HAL_GPIO_WritePin(SRCLK_GPIO_Port, SRCLK_Pin, GPIO_PIN_RESET);
-	}
-
-
-    // Store to storage register
-    HAL_GPIO_WritePin(RCLK_GPIO_Port, RCLK_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(RCLK_GPIO_Port, RCLK_Pin, GPIO_PIN_RESET);
-
-    count++;
-
-    HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+  } /* Infinite Loop */
   /* USER CODE END 3 */
 }
 
