@@ -65,7 +65,7 @@ static void MX_USART2_UART_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int nums[] = {6, 0, 4, 9, 1, 3};
+	int nums[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 	int num;
 
   /* USER CODE END 1 */
@@ -99,9 +99,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int i;
   while (1) {
-    int i;
-    for(i = 0; i < 6; i++) {
+    for(i = 0; i < 18; i++) {
      num = nums[i];
      DisplayNumber(num);
      HAL_Delay(1000);
